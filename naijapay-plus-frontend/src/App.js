@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -12,13 +11,15 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import ForgotPassword from './components/ForgotPassword';
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <Router>
-      <div ClassName="App">
-        <Navbar />
-	<main>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <main>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
@@ -26,16 +27,17 @@ function App() {
               <Route path="/pay-bills" element={<PayBills />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-	      <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
             </Routes>
-	</main>
-        <footer>
-          &copy; {new Date().getFullYear()} NaijaPay Plus. All rights reserved.
-        </footer>
-      </div>
-    </Router>
+          </main>
+          <footer>
+            &copy; {new Date().getFullYear()} NaijaPay Plus. All rights reserved.
+          </footer>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
